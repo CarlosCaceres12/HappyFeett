@@ -29,7 +29,7 @@ public class ConexionSingleton {
         return instancia;
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 
