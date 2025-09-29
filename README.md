@@ -1,25 +1,13 @@
-# HappyFeet Veterinaria
+# HappyFeet - Proyecto Java
 
-Proyecto Java conectado a MySQL.
+Proyecto de veterinaria conectado a MySQL.
 
 ## Configuración
+- Base de datos: HappyFeet
+- Usuario: campus2023
+- Contraseña: campus2023
 
-1. Crear la base de datos en MySQL:
-
-```sql
-CREATE DATABASE HappyFeet;
-```
-
-2. Usa tu usuario `campus2023` con contraseña `campus2023`.
-
-3. Compilar y ejecutar:
-
-```bash
-mvn clean package
-java -cp target/HappyFeet-1.0-SNAPSHOT.jar com.happyfeet.Main
-```
-
-## Funcionalidades
-
-- Listar dueños (`duenos`)
-- Listar mascotas (`mascotas`)
+## Ejecución
+1. Importa el proyecto en IntelliJ IDEA.
+2. Agrega `lib/mysql-connector-j-9.1.0.jar` como librería.
+3. Ejecuta la clase `AppController`.
