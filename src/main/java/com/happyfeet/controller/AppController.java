@@ -1,55 +1,40 @@
-package com.happyfeet.controller;
+package com.happyfeet;
 
 import com.happyfeet.repository.DuenoDAO;
 import com.happyfeet.repository.MascotaDAO;
-import com.happyfeet.service.FacturaService;
-import com.happyfeet.service.InventarioService;
-import com.happyfeet.view.ConsoleView;
-
 import java.util.Scanner;
 
 public class AppController {
-    private ConsoleView view = new ConsoleView();
-    private DuenoDAO duenoDAO = new DuenoDAO();
-    private MascotaDAO mascotaDAO = new MascotaDAO();
-    private InventarioService inventarioService = new InventarioService();
-    private FacturaService facturaService = new FacturaService();
-
     public static void main(String[] args) {
-        new AppController().run();
-    }
-
-    public void run() {
-        view.showWelcome();
         Scanner sc = new Scanner(System.in);
-        boolean loop = true;
-        while (loop) {
-            int opt = view.mainMenu();
-            switch (opt) {
-                case 1:
-                    view.listDuenos(duenoDAO.findAll());
-                    break;
-                case 2:
-                    view.listMascotas(mascotaDAO.findAll());
-                    break;
-                case 3:
-                    view.print("Simulando facturación: se deducirá 1 unidad del producto ID 1");
-                    boolean ok = inventarioService.deductStock(1, 1);
-                    if (ok) {
-                        int id = facturaService.createFactura(1, 65.00);
-                        if (id > 0) facturaService.generateInvoiceText(id);
-                    } else {
-                        view.print("No hay stock suficiente para el producto solicitado.");
-                    }
-                    break;
-                case 0:
-                    loop = false;
-                    break;
-                default:
-                    view.print("Opción inválida");
+        DuenoDAO duenoDAO = new DuenoDAO();
+        MascotaDAO mascotaDAO = new MascotaDAO();
+
+        while (true) {
+            System.out.println("===== HAPPYFEET MENU =====");
+            System.out.println("1. Listar Dueños");
+            System.out.println("2. Listar Mascotas");
+            System.out.println("0. Salir");
+            System.out.print("Seleccione una opción: ");
+            int op = sc.nextInt();
+            sc.nextLine();
+
+            switch (op) {
+                case 1 -> {
+                    System.out.println("Dueños:");
+                    duenoDAO.getDuenos().forEach(System.out::println);
+                }
+                case 2 -> {
+                    System.out.println("Mascotas:");
+                    mascotaDAO.getMascotas().forEach(System.out::println);
+                }
+                case 0 -> {
+                    System.out.println("Saliendo...");
+                    return;
+                }
+                default -> System.out.println("Opción no válida.");
             }
         }
-        view.print("Saliendo...");
-        sc.close();
     }
 }
+

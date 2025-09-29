@@ -6,19 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DuenoDAO {
-    public List<String> findAll() {
-        List<String> results = new ArrayList<>();
-        String sql = "SELECT id, nombre FROM duenos";
-        try (Connection conn = DBConnection.getConnection();
+    public List<String> getDuenos() {
+        List<String> duenos = new ArrayList<>();
+        try (Connection conn = DBConnection.getInstance().getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
+             ResultSet rs = stmt.executeQuery("SELECT nombre FROM dueno")) {
             while (rs.next()) {
-                results.add(rs.getInt("id") + " - " + rs.getString("nombre"));
+                duenos.add(rs.getString("nombre"));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return results;
+        return duenos;
     }
 }
