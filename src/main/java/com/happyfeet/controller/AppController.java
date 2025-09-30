@@ -1,7 +1,9 @@
-package com.happyfeet;
+package main.java.com.happyfeet.controller;
 
-import com.happyfeet.repository.DuenoDAO;
-import com.happyfeet.repository.MascotaDAO;
+import main.java.com.happyfeet.repository.DuenoDAO;
+import main.java.com.happyfeet.repository.MascotaDAO;
+import java.util.List;
+import main.java.com.happyfeet.model.Dueno;
 import java.util.Scanner;
 
 public class AppController {
@@ -22,7 +24,9 @@ public class AppController {
             switch (op) {
                 case 1 -> {
                     System.out.println("Dueños:");
-                    duenoDAO.getDuenos().forEach(System.out::println);
+                    List<Dueno> duenos = duenoDAO.getDuenos();
+        System.out.println("✅ Total dueños encontrados: " + duenos.size());
+        duenos.forEach(System.out::println); // imprime usando toString() de Dueno
                 }
                 case 2 -> {
                     System.out.println("Mascotas:");

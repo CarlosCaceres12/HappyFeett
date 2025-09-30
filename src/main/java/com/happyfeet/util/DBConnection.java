@@ -1,4 +1,4 @@
-package com.happyfeet.util;
+package main.java.com.happyfeet.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,6 +32,16 @@ public class DBConnection {
     public Connection getConnection() {
         return connection;
     }
+
+    // Método opcional para cerrar la conexión al final de la aplicación
+    public void closeConnection() {
+        try {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+                System.out.println("✅ Conexión cerrada correctamente");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-

@@ -1,6 +1,6 @@
-package com.happyfeet.service;
+package main.java.com.happyfeet.service;
 
-import com.happyfeet.util.DBConnection;
+import main.java.com.happyfeet.util.DBConnection;
 
 import java.sql.*;
 

@@ -1,4 +1,4 @@
-package com.happyfeet.view;
+package main.java.com.happyfeet.view;
 
 import java.util.List;
 import java.util.Scanner;
