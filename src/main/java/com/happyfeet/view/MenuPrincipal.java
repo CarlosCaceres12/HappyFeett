@@ -4,6 +4,8 @@ import main.java.com.happyfeet.controller.DuenoController;
 import main.java.com.happyfeet.controller.MascotaController;
 import main.java.com.happyfeet.controller.FacturaController;
 import main.java.com.happyfeet.controller.HistorialMedicoController;
+import main.java.com.happyfeet.controller.InventarioController;
+import main.java.com.happyfeet.controller.FacturaItemController;
 
 import java.util.Scanner;
 
@@ -21,16 +23,20 @@ public class MenuPrincipal {
             System.out.println("2️⃣  Gestión de Mascotas");
             System.out.println("3️⃣  Gestión de Facturas");
             System.out.println("4️⃣  Gestión de Historial Médico");
+            System.out.println("5️⃣  Gestión de Inventario");
+            System.out.println("6️⃣  Gestión de Items de Factura");
             System.out.println("0️⃣  Salir");
             System.out.println("--------------------------------------");
             System.out.print("Seleccione una opción: ");
-            opcion = Integer.parseInt(scanner.nextLine());
+            opcion = Integer.parseInt(scanner.nextLine().trim());
 
             switch (opcion) {
                 case 1 -> menuDuenos();
                 case 2 -> menuMascotas();
                 case 3 -> menuFacturas();
                 case 4 -> menuHistorialMedico();
+                case 5 -> menuInventario();
+                case 6 -> menuFacturaItem();
                 case 0 -> System.out.println("¡Gracias por usar Veterinaria Happy Feet! 🐶🐱");
                 default -> System.out.println("⚠️ Opción inválida, intente de nuevo.");
             }
@@ -48,7 +54,7 @@ public class MenuPrincipal {
             System.out.println("4. Eliminar Dueño");
             System.out.println("0. Volver");
             System.out.print("Seleccione una opción: ");
-            int opcion = Integer.parseInt(scanner.nextLine());
+            int opcion = Integer.parseInt(scanner.nextLine().trim());
 
             switch (opcion) {
                 case 1 -> DuenoController.registrarDueno();
@@ -72,7 +78,7 @@ public class MenuPrincipal {
             System.out.println("4. Eliminar Mascota");
             System.out.println("0. Volver");
             System.out.print("Seleccione una opción: ");
-            int opcion = Integer.parseInt(scanner.nextLine());
+            int opcion = Integer.parseInt(scanner.nextLine().trim());
 
             switch (opcion) {
                 case 1 -> MascotaController.registrarMascota();
@@ -96,7 +102,7 @@ public class MenuPrincipal {
             System.out.println("4. Eliminar Factura");
             System.out.println("0. Volver");
             System.out.print("Seleccione una opción: ");
-            int opcion = Integer.parseInt(scanner.nextLine());
+            int opcion = Integer.parseInt(scanner.nextLine().trim());
 
             switch (opcion) {
                 case 1 -> FacturaController.registrarFactura();
@@ -120,7 +126,7 @@ public class MenuPrincipal {
             System.out.println("4. Eliminar Historial Médico");
             System.out.println("0. Volver");
             System.out.print("Seleccione una opción: ");
-            int opcion = Integer.parseInt(scanner.nextLine());
+            int opcion = Integer.parseInt(scanner.nextLine().trim());
 
             switch (opcion) {
                 case 1 -> HistorialMedicoController.registrarHistorial();
@@ -132,4 +138,55 @@ public class MenuPrincipal {
             }
         }
     }
+
+    // ===== SUBMENÚ INVENTARIO =====
+    private static void menuInventario() {
+        boolean volver = false;
+        while (!volver) {
+            System.out.println("\n===== MENÚ INVENTARIO =====");
+            System.out.println("1. Mostrar Inventario");
+            System.out.println("2. Agregar Producto/Servicio al Inventario");
+            System.out.println("0. Volver al menú principal");
+            System.out.print("Seleccione una opción: ");
+
+            int opcion = Integer.parseInt(scanner.nextLine().trim());
+
+            switch (opcion) {
+                case 1 -> InventarioController.mostrarInventario();
+                case 2 -> InventarioController.agregarInventario();
+                case 0 -> volver = true;
+                default -> System.out.println("⚠️ Opción inválida, intente de nuevo.");
+            }
+        }
+    }
+
+    // ===== SUBMENÚ FACTURA ITEM =====
+    private static void menuFacturaItem() {
+        boolean volver = false;
+        while (!volver) {
+            System.out.println("\n===== MENÚ ITEMS DE FACTURA =====");
+            System.out.println("1. Agregar Item a Factura");
+            System.out.println("2. Mostrar Items de una Factura");
+            System.out.println("0. Volver al menú principal");
+            System.out.print("Seleccione una opción: ");
+
+            int opcion = Integer.parseInt(scanner.nextLine().trim());
+
+            switch (opcion) {
+                case 1 -> {
+                    System.out.print("Ingrese el ID de la factura: ");
+                    int fId = Integer.parseInt(scanner.nextLine().trim());
+                    FacturaItemController.agregarItemAFactura(fId);
+                }
+                case 2 -> {
+                    System.out.print("Ingrese el ID de la factura: ");
+                    int fId2 = Integer.parseInt(scanner.nextLine().trim());
+                    FacturaItemController.mostrarItemsDeFactura(fId2);
+                }
+                case 0 -> volver = true;
+                default -> System.out.println("⚠️ Opción inválida, intente de nuevo.");
+            }
+        }
+    }
 }
+
