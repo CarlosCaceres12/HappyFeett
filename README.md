@@ -1,3 +1,33 @@
+# 🐾 Veterinaria Happy Feet - Sistema de Gestión 🐾
+
+Este proyecto es un sistema de gestión para una clínica veterinaria, diseñado para administrar dueños, mascotas, facturas, historial médico, inventario, items de facturas y citas. Está desarrollado en **Java** con **MySQL** como base de datos.
+
+---
+
+## 📋 Características principales
+
+1. **Gestión de Dueños**
+    - Registrar, mostrar, editar y eliminar dueños de mascotas.
+2. **Gestión de Mascotas**
+    - Registrar, mostrar, editar y eliminar mascotas asociadas a un dueño.
+3. **Gestión de Facturas**
+    - Registrar, mostrar, editar y eliminar facturas de servicios o productos.
+4. **Historial Médico**
+    - Registrar, mostrar, editar y eliminar historiales médicos de las mascotas.
+5. **Inventario**
+    - Gestionar productos y servicios disponibles, con control de stock.
+6. **Items de Factura**
+    - Asociar productos o servicios del inventario a una factura y calcular subtotal.
+7. **Citas**
+    - Registrar, mostrar, editar y eliminar citas de mascotas.
+
+## ⚙️ Requisitos
+
+- Java 17 o superior
+- MySQL 8 o superior
+- IDE recomendado: IntelliJ IDEA, Eclipse o VS Code con soporte Java
+- Conexión a MySQL con usuario y contraseña configurados en `FacturaDAO.java`, `InventarioDAO.java`, etc.
+
 DROP DATABASE IF EXISTS HappyFest;
 CREATE DATABASE IF NOT EXISTS HappyFest;
 USE HappyFest;
@@ -58,6 +88,18 @@ FOREIGN KEY (factura_id) REFERENCES factura(id) ON DELETE CASCADE,
 FOREIGN KEY (inventario_id) REFERENCES inventario(id)
 );
 
+-- Tabla Cita
+CREATE TABLE IF NOT EXISTS cita (
+id INT AUTO_INCREMENT PRIMARY KEY,
+mascota_id INT NOT NULL,
+dueno_id INT NOT NULL,
+fecha_hora DATETIME NOT NULL,
+motivo VARCHAR(150),
+estado VARCHAR(50) DEFAULT 'Pendiente',
+FOREIGN KEY (mascota_id) REFERENCES mascota(id),
+FOREIGN KEY (dueno_id) REFERENCES dueno(id)
+);
+
 -- Datos de prueba
 
 -- Dueños
@@ -89,3 +131,9 @@ INSERT INTO factura_item (factura_id, inventario_id, cantidad, subtotal)
 VALUES
 (1, 1, 2, 100.0),
 (2, 2, 1, 80.0);
+
+-- Citas (ejemplo)
+INSERT INTO cita (mascota_id, dueno_id, fecha_hora, motivo, estado)
+VALUES
+(1, 1, '2025-10-02 10:00:00', 'Chequeo general', 'Pendiente'),
+(2, 2, '2025-10-03 15:30:00', 'Vacunación anual', 'Pendiente');

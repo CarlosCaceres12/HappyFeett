@@ -6,6 +6,7 @@ import main.java.com.happyfeet.controller.FacturaController;
 import main.java.com.happyfeet.controller.HistorialMedicoController;
 import main.java.com.happyfeet.controller.InventarioController;
 import main.java.com.happyfeet.controller.FacturaItemController;
+import main.java.com.happyfeet.controller.CitaController;
 
 import java.util.Scanner;
 
@@ -25,6 +26,7 @@ public class MenuPrincipal {
             System.out.println("4️⃣  Gestión de Historial Médico");
             System.out.println("5️⃣  Gestión de Inventario");
             System.out.println("6️⃣  Gestión de Items de Factura");
+            System.out.println("7️⃣  Gestión de Citas");
             System.out.println("0️⃣  Salir");
             System.out.println("--------------------------------------");
             System.out.print("Seleccione una opción: ");
@@ -37,6 +39,7 @@ public class MenuPrincipal {
                 case 4 -> menuHistorialMedico();
                 case 5 -> menuInventario();
                 case 6 -> menuFacturaItem();
+                case 7 -> menuCitas();
                 case 0 -> System.out.println("¡Gracias por usar Veterinaria Happy Feet! 🐶🐱");
                 default -> System.out.println("⚠️ Opción inválida, intente de nuevo.");
             }
@@ -188,5 +191,29 @@ public class MenuPrincipal {
             }
         }
     }
-}
 
+    // ===== SUBMENÚ CITAS =====
+    private static void menuCitas() {
+        boolean volver = false;
+        while (!volver) {
+            System.out.println("\n===== MENÚ CITAS =====");
+            System.out.println("1. Registrar Cita");
+            System.out.println("2. Mostrar Citas");
+            System.out.println("3. Editar Cita");
+            System.out.println("4. Eliminar Cita");
+            System.out.println("0. Volver al menú principal");
+            System.out.print("Seleccione una opción: ");
+
+            int opcion = Integer.parseInt(scanner.nextLine().trim());
+
+            switch (opcion) {
+                case 1 -> CitaController.registrarCita();
+                case 2 -> CitaController.mostrarCitas();
+                case 3 -> CitaController.editarCita();
+                case 4 -> CitaController.eliminarCita();
+                case 0 -> volver = true;
+                default -> System.out.println("⚠️ Opción inválida, intente de nuevo.");
+            }
+        }
+    }
+}
