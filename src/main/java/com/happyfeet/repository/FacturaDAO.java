@@ -10,9 +10,8 @@ public class FacturaDAO {
 
     private static final String URL = "jdbc:mysql://localhost:3306/HappyFest";
     private static final String USER = "campus2023";
-    private static final String PASSWORD = "campus2023"; // pon tu contraseña si tienes
+    private static final String PASSWORD = "campus2023";
 
-    // Conexión a la base de datos
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
@@ -64,5 +63,35 @@ public class FacturaDAO {
         }
 
         return facturas;
+    }
+
+    // Editar factura por ID
+    public void editarFactura(int id, Factura factura) {
+        String sql = "UPDATE factura SET descripcion=?, metodo_pago=?, total=? WHERE id=?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, factura.getDescripcion());
+            stmt.setString(2, factura.getMetodoPago());
+            stmt.setDouble(3, factura.getTotal());
+            stmt.setInt(4, id);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Eliminar factura por ID
+    public void eliminarFactura(int id) {
+        String sql = "DELETE FROM factura WHERE id=?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

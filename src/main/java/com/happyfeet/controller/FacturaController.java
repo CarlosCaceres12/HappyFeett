@@ -43,9 +43,38 @@ public class FacturaController {
 
         for (int i = 0; i < facturas.size(); i++) {
             Factura f = facturas.get(i);
-            System.out.println((i + 1) + ". Dueño ID: " + f.getDuenoId() +
+            System.out.println((i + 1) + ". ID: " + f.getId() +
+                    ", Dueño ID: " + f.getDuenoId() +
+                    ", Número: " + f.getNumero() +
                     ", Fecha: " + f.getFechaEmision() +
                     ", Total: $" + f.getTotal());
         }
+    }
+
+    // Editar factura
+    public static void editarFactura() {
+        mostrarFacturas();
+        System.out.print("Seleccione el número de la factura a editar: ");
+        int index = Integer.parseInt(scanner.nextLine()) - 1;
+
+        System.out.print("Nueva descripción: ");
+        String descripcion = scanner.nextLine();
+        System.out.print("Nuevo método de pago: ");
+        String metodoPago = scanner.nextLine();
+        System.out.print("Nuevo total: ");
+        double total = Double.parseDouble(scanner.nextLine());
+
+        Factura factura = new Factura("", descripcion, metodoPago, total);
+        facturaDAO.editarFactura(index, factura);
+        System.out.println("Factura editada correctamente.");
+    }
+
+    // Eliminar factura
+    public static void eliminarFactura() {
+        mostrarFacturas();
+        System.out.print("Seleccione el número de la factura a eliminar: ");
+        int index = Integer.parseInt(scanner.nextLine()) - 1;
+        facturaDAO.eliminarFactura(index);
+        System.out.println("Factura eliminada correctamente.");
     }
 }
