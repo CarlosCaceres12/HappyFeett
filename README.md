@@ -1,32 +1,56 @@
-# 🐾 Veterinaria Happy Feet - Sistema de Gestión 🐾
+# 🐾 HappyFeet - Sistema de Gestión Integral para Veterinaria
 
-Este proyecto es un sistema de gestión para una clínica veterinaria, diseñado para administrar dueños, mascotas, facturas, historial médico, inventario, items de facturas y citas. Está desarrollado en **Java** con **MySQL** como base de datos.
+## 📌 Descripción
+HappyFeet es un sistema de software diseñado para gestionar de forma eficiente la información de la veterinaria **"Happy Feet"**.  
+Permite administrar dueños, mascotas, inventario, citas, facturación y el historial médico de cada animal.
 
 ---
 
-## 📋 Características principales
+## 🚀 Tecnologías Utilizadas
+- **Java 17**
+- **Maven**
+- **MySQL 8**
+- **JDBC**
+- **Git/GitHub**
 
-1. **Gestión de Dueños**
-    - Registrar, mostrar, editar y eliminar dueños de mascotas.
-2. **Gestión de Mascotas**
-    - Registrar, mostrar, editar y eliminar mascotas asociadas a un dueño.
-3. **Gestión de Facturas**
-    - Registrar, mostrar, editar y eliminar facturas de servicios o productos.
-4. **Historial Médico**
-    - Registrar, mostrar, editar y eliminar historiales médicos de las mascotas.
-5. **Inventario**
-    - Gestionar productos y servicios disponibles, con control de stock.
-6. **Items de Factura**
-    - Asociar productos o servicios del inventario a una factura y calcular subtotal.
-7. **Citas**
-    - Registrar, mostrar, editar y eliminar citas de mascotas.
+---
 
-## ⚙️ Requisitos
+## ⚙️ Funcionalidades Implementadas
+- Gestión de **dueños** y sus mascotas.
+- Control de **inventario** (productos, medicamentos).
+- Registro y consulta de **citas veterinarias**.
+- Manejo de **facturación** y detalle de productos.
+- Historial médico de cada mascota.
+- Menú de **consola interactivo** para navegar entre módulos.
 
-- Java 17 o superior
-- MySQL 8 o superior
-- IDE recomendado: IntelliJ IDEA, Eclipse o VS Code con soporte Java
-- Conexión a MySQL con usuario y contraseña configurados en `FacturaDAO.java`, `InventarioDAO.java`, etc.
+---
+
+## 🗄 Modelo de Base de Datos
+La base de datos está compuesta por las tablas:
+- `dueno`
+- `mascota`
+- `inventario`
+- `factura`
+- `factura_item`
+- `cita`
+- `historial_medico`
+
+> 📌 Ver carpeta `/database/schema.sql` y `/database/data.sql` para la creación y carga de datos.  
+Se recomienda incluir un **diagrama ER** con las relaciones.
+
+---
+
+## 📥 Instalación y Ejecución
+
+### ✅ Requisitos previos
+- Java 17
+- Maven
+- MySQL Server
+
+### 🔧 Pasos de instalación
+1. Clonar el repositorio:
+   ```bash
+   git clone <https://github.com/CarlosCaceres12/HappyFeett.git>
 
 DROP DATABASE IF EXISTS HappyFest;
 CREATE DATABASE IF NOT EXISTS HappyFest;
